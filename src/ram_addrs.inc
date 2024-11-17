@@ -19,7 +19,7 @@ TempArray_LayerDef_22 equ $FFFFA822
 TempArray_LayerDef_60 equ $FFFFA860
 Decomp_Buffer equ $FFFFAA00
 Object_Display_Lists equ $FFFFAC00
-Object_RAM equ $FFFFB000
+MainCharacter equ $FFFFB000
 MainCharacter_Xpos equ $FFFFB008
 word_FFB00C equ $FFFFB00C
 MainCharacter_Xvel equ $FFFFB010
@@ -30,7 +30,7 @@ byte_FFB02A equ $FFFFB02A
 byte_FFB03C equ $FFFFB03C
 byte_FFB03D equ $FFFFB03D
 byte_FFB03E equ $FFFFB03E
-SegaScreenObject equ $FFFFB040
+Sidekick equ $FFFFB040
 word_FFB048 equ $FFFFB048
 word_FFB04C equ $FFFFB04C
 word_FFB050 equ $FFFFB050
@@ -58,6 +58,7 @@ word_FFB388 equ $FFFFB388
 Oil_Ypos equ $FFFFB38C
 byte_FFB3C0 equ $FFFFB3C0
 word_FFB3C8 equ $FFFFB3C8
+Dynamic_Object_RAM equ $FFFFB400
 byte_FFB800 equ $FFFFB800
 unk_FFC000 equ $FFFFC000
 SS_Shared_RAM equ $FFFFD000
@@ -114,6 +115,9 @@ unk_FFE380 equ $FFFFE380
 Knuckles__Pos_Record_Buf equ $FFFFE500
 Tails_Pos_Record_Buf equ $FFFFE600
 CNZ_saucer_data equ $FFFFE700
+Ring_Positions equ $FFFFE800
+Ring_Positions_2 equ $FFFFE802
+Ring_Positions_6 equ $FFFFE806
 Camera_RAM equ $FFFFEE00
 Camera_Y_pos equ $FFFFEE04
 Camera_BG_X_pos equ $FFFFEE08
@@ -191,6 +195,8 @@ Tails_Min_X_pos equ $FFFFEEF8
 Tails_Max_X_pos equ $FFFFEEFA
 Tails_Min_Y_pos equ $FFFFEEFC
 Block_cache equ $FFFFEF00
+Ring_consumption_table equ $FFFFEF80
+Ring_consumption_table_2 equ $FFFFEF82
 Underwater_target_palette equ $FFFFF000
 Underwater_palette equ $FFFFF080
 Underwater_palette4 equ $FFFFF084
@@ -212,6 +218,7 @@ Hint_counter_reserve equ $FFFFF624
 Palette_fade_range equ $FFFFF626
 VIntSubE_RunCount equ $FFFFF628
 Vint_routine equ $FFFFF62A
+Sprite_count equ $FFFFF62C
 PalCycle_Frame equ $FFFFF632
 PalCycle_Timer equ $FFFFF634
 RNG_seed equ $FFFFF636
@@ -250,7 +257,18 @@ Plc_Buffer_Reg14 equ $FFFFF6F4
 Plc_Buffer_Reg18 equ $FFFFF6F8
 Plc_Buffer_Reg1A equ $FFFFF6FA
 Misc_Variables equ $FFFFF700
+Rings_manager_routine equ $FFFFF710
 Level_started_flag equ $FFFFF711
+Ring_start_addr equ $FFFFF712
+Ring_end_addr equ $FFFFF714
+Ring_start_addr_P2 equ $FFFFF716
+Ring_end_addr_P2 equ $FFFFF718
+CNZ_Bumper_routine equ $FFFFF71A
+CNZ_Bumper_UnkFlag equ $FFFFF71B
+CNZ_Visible_bumpers_start equ $FFFFF71C
+CNZ_Visible_bumpers_end equ $FFFFF720
+CNZ_Visible_bumpers_start_P2 equ $FFFFF724
+CNZ_Visible_bumpers_end_P2 equ $FFFFF728
 Screen_redraw_flag equ $FFFFF72C
 WFZ_SCZ_Fire_Toggle equ $FFFFF72E
 Water_flag equ $FFFFF730
@@ -261,6 +279,13 @@ Tornado_Velocity_Y equ $FFFFF738
 Boss_spawn_delay equ $FFFFF73A
 SS_Offset_X equ $FFFFF73E
 SS_Offset_Y equ $FFFFF740
+Obj_placement_routine equ $FFFFF76C
+Camera_X_pos_last equ $FFFFF76E
+Obj_load_addr_right equ $FFFFF770
+Obj_load_addr_left equ $FFFFF774
+Obj_load_addr_right_P2 equ $FFFFF778
+Obj_load_addr_left_P2 equ $FFFFF77C
+Camera_X_pos_last_P2 equ $FFFFF78C
 Demo_button_index equ $FFFFF790
 Demo_press_counter equ $FFFFF792
 PalChangeSpeed equ $FFFFF794
@@ -365,6 +390,7 @@ Correct_cheat_entries equ $FFFFFF0C
 Correct_cheat_entries_2 equ $FFFFFF0E
 Results_Screen_2P equ $FFFFFF10
 Results_Data_2P equ $FFFFFF20
+Perfect_rings_left equ $FFFFFF40
 Perfect_rings_flag equ $FFFFFF42
 SlotMachineInUse equ $FFFFFF4C
 SlotMachine_Routine equ $FFFFFF4E
